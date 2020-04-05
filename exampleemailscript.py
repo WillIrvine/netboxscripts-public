@@ -1,12 +1,9 @@
 # Example Email Script
 # William Irvine 2020
 
-from django.utils.text import slugify
-
 from dcim.constants import *
 from dcim.models import Device, DeviceRole, DeviceType, Site
 from tenancy.models import Tenant
-from circuits.models import Circuit, CircuitType, CircuitTermination
 from extras.scripts import *
 
 from django.http import HttpResponse
@@ -72,12 +69,12 @@ class ExampleEmailScript(Script):
 
 	     
         email = EmailMessage(
-                data['Client'].name+' QRG Export',
-                'Please view the attached QRG output from Netbox',
-                'test@test.com',
-                [data['Email']],
+                data['Client'].name+' QRG Export',	# Subject
+                'Please view the attached QRG output from Netbox',	# Email Body
+                'test@test.com',	# Email to send from
+                [data['Email']],	# pull email(s) from script input
             )
-        email.attach(data['Client'].name+'-QRGExport.csv', '\n'.join(output), 'text/csv')
+        email.attach(data['Client'].name+'-QRGExport.csv', '\n'.join(output), 'text/csv') # File Name
         email.send()	
 		
         return '\n'.join(output)
