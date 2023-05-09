@@ -7,8 +7,6 @@
 #                            #
 ##############################
 
-## TODO add logic for adding a contact that already exists in the group
-
 from dcim.models import Site
 from tenancy.models import Tenant, Contact, ContactGroup, ContactAssignment, ContactRole
 from extras.scripts import *
